@@ -5,30 +5,16 @@
   "version": "3.18.0",
   "build": "031500",
   "description": "noteplan-cli",
-  "repository": "https://github.com/NotePlan/plugins",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NotePlan/plugins.git"
+  },
   "contributors": [
-    {
-      "name": "Eduard Metzger",
-      "email": "hello@noteplan.co",
-      "url": "https://github.com/NotePlan"
-    },
-    {
-      "name": "Jonathan Clark",
-      "url": "https://github.com/jgclark"
-    },
-    {
-      "name": "Naman Goel",
-      "url": "https://github.com/nmn"
-    },
-    {
-      "name": "David Wertheimer",
-      "url": "https://github.com/dwertheimer"
-    },
-    {
-      "name": "Mike Erickson",
-      "email": "codedungeon@gmail.com",
-      "url": "https://github.com/mikeerickson"
-    }
+    "Eduard Metzger <hello@noteplan.co> (https://github.com/NotePlan)",
+    "Jonathan Clark (https://github.com/jgclark)",
+    "Naman Goel (https://github.com/nmn)",
+    "David Wertheimer (https://github.com/dwertheimer)",
+    "Mike Erickson <codedungeon@gmail.com> (https://github.com/mikeerickson)"
   ],
   "license": "MIT",
   "main": "index.js",
@@ -100,16 +86,16 @@
     "typecheck": "flow check",
     "fix": "npm run lint-fix && npm run format",
     "test": "jest **/*.test.js",
-    "test:ci": "./node_modules/.bin/jest ./**/__tests__/*.test.js --ci --reporters=default --reporters='./github-actions-reporter'",
+    "test:ci": "jest ./**/__tests__/*.test.js --ci --reporters=default --reporters='./github-actions-reporter'",
     "test:compact": "jest **/*.test.js --reporters jest-silent-reporter --reporters ./jest.customSummaryReporter.js",
-    "test:dev": "./node_modules/.bin/jest ./**/__tests__/*.test.js --silent",
-    "test:watch": "./node_modules/.bin/jest ./**/__tests__/*.test.js --silent --watchAll",
+    "test:dev": "jest ./**/__tests__/*.test.js --silent",
+    "test:watch": "jest ./**/__tests__/*.test.js --silent --watchAll",
     "security": "npm run security:high && npm run security:critical",
     "security:high": "npm audit | grep -B 1 -A 10 high",
     "security:critical": "npm audit | grep -B 1 -A 10 critical",
     "dev": "node ./tasks/start.js",
     "start": "node ./tasks/start.js",
-    "docs": "./node_modules/.bin/documentation build helpers/*.js -c docs/documentation.cfg.json -o docs -f html --shallow --document-exported --theme docs/theme; open docs/index.html"
+    "docs": "documentation build helpers/*.js -c docs/documentation.cfg.json -o docs -f html --shallow --document-exported --theme docs/theme; open docs/index.html"
   },
   "prettier": {
     "printWidth": 180,
@@ -169,5 +155,13 @@
     "sprintf-js": "1.0.3",
     "strftime": "0.10.0",
     "toml": "^3.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/NotePlan/plugins/issues"
+  },
+  "homepage": "https://github.com/NotePlan/plugins#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "author": "Bryan Shukin"
 }

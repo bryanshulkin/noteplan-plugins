@@ -10,6 +10,7 @@ const READWISE_API_KEY_LENGTH = 50
 const LAST_SYNÇ_TIME = 'last_sync_time'
 let downloadHiglightCount: number = 0
 let updatedSourceCount: number = 0
+let hasNextPage: string = ''
 
 // This is the main function that will be called by NotePlan
 export async function readwiseSync(): Promise<void> {
@@ -104,6 +105,9 @@ async function parseBookAndWriteToNote(source: any): Promise<void> {
       }
       if (!outputNote?.content?.includes('# Highlights')) {
         outputNote.insertHeading('Highlights', findEndOfActivePartOfNote(outputNote) + 1, 1)
+      }
+      if (source.hasNextPage != null){
+        await parseBookAndWriteToNote(source)
       }
     }
     source.highlights.map((highlight) => appendHighlightToNote(outputNote, highlight, source.source, source.asin))
@@ -200,7 +204,7 @@ function appendHighlightToNote(outputNote: TNote, highlight: any, category: stri
   const filteredContent = highlight.text.replace(/\n/g, ' ')
   let linkToHighlightOnWeb = ''
   let userNote = ''
-
+  
   if (highlight.tags !== null && highlight.tags !== '') {
     for (const tag of highlight.tags) {
       if (tag.name !== null && tag.name !== '' && tag.name.startsWith('h') && tag.name.length === 2) {
